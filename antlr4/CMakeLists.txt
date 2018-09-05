@@ -10,11 +10,13 @@ add_custom_target(antlr4_generate_code
     WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
 )
 
-find_file(ANTLR_INCLUDE_DIRS antlr4-runtime/antlr4-runtime.h)
+find_file(ANTLR_INCLUDE_DIRS antlr4-runtime.h)
 get_filename_component(ANTLR_INCLUDE_DIRS ${ANTLR_INCLUDE_DIRS} DIRECTORY)
 find_library(ANTLR_LIBRARY_DEBUG antlr4-runtime ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib NO_DEFAULT_PATH)
 find_library(ANTLR_LIBRARY_RELEASE antlr4-runtime ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib NO_DEFAULT_PATH)
 set(ANTLR_LIBRARIES debug "${ANTLR_LIBRARY_DEBUG}" optimized "${ANTLR_LIBRARY_RELEASE}")
+
+message(STATUS "ANTLR_INCLUDE_DIRS = ${ANTLR_INCLUDE_DIRS}")
 message(STATUS "ANTLR_LIBRARIES = ${ANTLR_LIBRARIES}")
 
 file(GLOB SRCS generated/*.cpp)
