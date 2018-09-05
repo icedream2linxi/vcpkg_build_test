@@ -26,13 +26,23 @@ int main(int , const char **) {
 
   tokens.fill();
   for (auto token : tokens.getTokens()) {
+#ifdef _MSC_VER
+    auto s =antlrcpp::s2ws(token->toString());
+    std::wprintf(L"%s\n", s.c_str());
+#else
     std::cout << token->toString() << std::endl;
+#endif
   }
 
   TParser parser(&tokens);
   tree::ParseTree* tree = parser.main();
 
+#ifdef _MSC_VER
+  auto s =antlrcpp::s2ws(tree->toStringTree(&parser));
+  std::wprintf(L"%s\n", s.c_str());
+#else
   std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
+#endif
 
   auto id = atn::ATNDeserializer::SERIALIZED_UUID();
   std::cout << id.toString() << std::endl;

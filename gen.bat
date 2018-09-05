@@ -9,7 +9,7 @@ cd %BUILD_DIR%
 cmake -G "Ninja" ^
       -DCMAKE_BUILD_TYPE=Debug ^
       -DVCPKG_APPLOCAL_DEPS=ON ^
-      -DVCPKG_TARGET_TRIPLET=x64-windows-static ^
+      -DVCPKG_TARGET_TRIPLET=x64-windows^
       -DCMAKE_TOOLCHAIN_FILE=d:/my_vcpkg/scripts/buildsystems/vcpkg.cmake ^
       ..
 
