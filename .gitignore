@@ -1,0 +1,4 @@
+*.jar
+
+generated/
+build/
